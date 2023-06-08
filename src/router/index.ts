@@ -1,24 +1,50 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
-import HomeView from "../views/HomeView.vue";
 
 Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
   {
     path: "/",
-    name: "home",
-    component: HomeView,
+    name: "index",
+    component: () => import("../views/group1/index.vue"),
+    redirect: "/home",
+    meta: {
+      requireAuth: true,
+    },
+    children: [
+      {
+        path: "/home",
+        name: "home",
+        meta: {
+          requireAuth: true,
+        },
+        component: () => import("../views/group1/HomeView.vue"),
+      },
+      {
+        path: "/about",
+        name: "about",
+        meta: {
+          requireAuth: true,
+        },
+        component: () => import("../views/group1/AboutView.vue"),
+      },
+    ],
   },
   {
-    path: "/about",
-    name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+    path: "/login",
+    name: "login",
+    component: () => import("../views/LoginView.vue"),
   },
+
+  // 懒加载示例
+  // {
+  //   path: "/about",
+  //   name: "about",
+  //   // 路由级别的代码分割，为此路由生成了一个单独的块（about.[hash].js）。当路由被访问时加载该组件
+  //   component: () =>
+  //     import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+  // },
 ];
 
 const router = new VueRouter({
