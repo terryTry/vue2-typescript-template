@@ -10,6 +10,7 @@ Vue.use(filters);
 
 Vue.config.productionTip = false;
 Vue.prototype.$store = store;
+Vue.prototype.$bus = new Vue();
 
 // router跳转前的token验证
 router.beforeEach((to, from, next) => {
