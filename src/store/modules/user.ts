@@ -3,8 +3,8 @@ import { Module } from "vuex";
 const user: Module<UserState, RootState> = {
   namespaced: true,
   state: {
-    userName: "",
-    token: "",
+    userName: "admin",
+    token: "123",
   },
   mutations: {
     SET_TOKEN(state, token: string) {

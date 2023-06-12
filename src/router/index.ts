@@ -19,7 +19,7 @@ const routes: Array<RouteConfig> = [
         meta: {
           requireAuth: true,
         },
-        component: () => import("../views/group1/HomeView.vue"),
+        component: () => import(/* webpackChunkName: "group1" */"../views/group1/HomeView.vue"),
       },
       {
         path: "/about",
@@ -27,7 +27,7 @@ const routes: Array<RouteConfig> = [
         meta: {
           requireAuth: true,
         },
-        component: () => import("../views/group1/AboutView.vue"),
+        component: () => import(/* webpackChunkName: "group1" */"../views/group1/AboutView.vue"),
       },
     ],
   },

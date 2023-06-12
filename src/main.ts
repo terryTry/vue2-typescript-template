@@ -5,6 +5,10 @@ import store from "./store";
 import directives from "./directive";
 import filters from "./filter";
 
+import VueDraggableResizable from 'vue-draggable-resizable-gorkys'
+import 'vue-draggable-resizable-gorkys/dist/VueDraggableResizable.css'
+Vue.component('vue-draggable-resizable', VueDraggableResizable)
+
 Vue.use(directives);
 Vue.use(filters);
 
