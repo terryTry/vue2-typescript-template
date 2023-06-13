@@ -77,6 +77,10 @@ declare module "vue/types/vue" {
 }
 ```
 
+- *.d.ts导入import其它类型导致全局类型失效问题
+
+原因：如果在 .d.ts 文件中使用了 import 或者 require 等方式引入了其他模块，那么 ts 就会将其视为一个模块，从而导致文件下的所有类型声明直接失效。
+
 ## 二. vuex中的ts支持
 
 - RootState书写
