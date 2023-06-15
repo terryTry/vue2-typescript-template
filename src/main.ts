@@ -4,6 +4,8 @@ import router from "./router";
 import store from "./store";
 import directives from "./directive";
 import filters from "./filter";
+import ElementUI from "element-ui";
+import 'element-ui/lib/theme-chalk/index.css';
 
 import VueDraggableResizable from 'vue-draggable-resizable-gorkys'
 import 'vue-draggable-resizable-gorkys/dist/VueDraggableResizable.css'
@@ -11,6 +13,8 @@ Vue.component('vue-draggable-resizable', VueDraggableResizable)
 
 Vue.use(directives);
 Vue.use(filters);
+
+Vue.use(ElementUI)
 
 Vue.config.productionTip = false;
 Vue.prototype.$store = store;
