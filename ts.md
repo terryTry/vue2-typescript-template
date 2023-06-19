@@ -73,6 +73,7 @@ import Vue, { VNode } from "vue";
 declare module "vue/types/vue" {
     interface Vue {
         $bus: Vue;
+        // 挂在vue实例上的属性声明在这里
     }
 }
 ```
@@ -191,9 +192,11 @@ declare module "vue/types/vue" {
 }
 ```
 
-## 三. 单文件组件中的Props类型声明与类型推导
+## 三. 单文件组件中的类型声明与类型推导
 
 >为了让 TypeScript 正确地推导出组件选项内的类型，我们需要通过 defineComponent() 这个全局 API 来定义组件.
+
+### Props类型声明与推导
 
 ```
 <template>
@@ -222,6 +225,91 @@ export default defineComponent({
   }
 })
 </script>
+```
+
+### Data类型声明与推导
+
+```
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+type SvgDrawData = {
+    drawingRect: boolean
+    drawingPolygon: boolean
+    drawingLine: boolean
+    
+    rectX: number
+    rectY: number
+    rectWidth: number
+    rectHeight: number
+    rects: Array<{
+        x: number
+        y: number
+        width: number
+        height: number
+    }>
+
+    polygonPoints: Array<{
+        x: number
+        y: number
+    }>
+    polygons: Array<{
+        id: number
+        points: Array<{
+            x: number
+            y: number
+        }>
+    }>
+
+    lineX1: number
+    lineY1: number
+    lineX2: number
+    lineY2: number
+
+    lines: Array<{
+        x1: number
+        y1: number
+        x2: number
+        y2: number
+    }>
+}
+
+export default defineComponent({
+    data(): SvgDrawData {
+        return {
+            // 绘制图形
+            drawingRect: false,
+            drawingPolygon: false,
+            drawingLine: false,
+            
+            rectX: 0,
+            rectY: 0,
+            rectWidth: 0,
+            rectHeight: 0,
+            rects: [], // 已绘制的矩形
+
+            polygonPoints: [], // 绘制多边形的点
+            polygons: [
+                {
+                    id: 0,
+                    points: [
+                        { x: 100, y: 100 },
+                        { x: 200, y: 100 },
+                        { x: 200, y: 200 },
+                        { x: 100, y: 200 },
+                    ],
+                }
+            ], // 已绘制的多边形
+
+            lineX1: 0,
+            lineY1: 0,
+            lineX2: 0,
+            lineY2: 0,
+
+            lines: [], // 已绘制的直线
+        };
+    },
+});
 ```
 
 ## 四. 第三方组件的ts支持
