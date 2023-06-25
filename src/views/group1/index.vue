@@ -24,7 +24,7 @@ export default Vue.extend({
     return {
       navList: [
         {
-          name: "算法区域绘制",
+          name: "Home",
           path: "/home",
         },
         {

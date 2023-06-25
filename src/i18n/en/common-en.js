@@ -1,3 +1,5 @@
 export default {
-    "btn-clear": "Clear",
+    "home-welcome": "Welcome to the home page",
+    "about-tips": "This is an about page",
+    "logout": "Logout",
 }
