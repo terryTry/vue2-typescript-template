@@ -5,6 +5,14 @@ import store from "./store";
 import directives from "./directive";
 import filters from "./filter";
 import ElementUI from "element-ui";
+
+import enLocale from 'element-ui/lib/locale/lang/en'
+import zhLocale from 'element-ui/lib/locale/lang/zh-CN'
+
+import { i18n, language } from '@/utils/locale'
+
+console.log('default language: ', language)
+
 import 'element-ui/lib/theme-chalk/index.css';
 
 import VueDraggableResizable from 'vue-draggable-resizable-gorkys'
@@ -14,7 +22,7 @@ Vue.component('vue-draggable-resizable', VueDraggableResizable)
 Vue.use(directives);
 Vue.use(filters);
 
-Vue.use(ElementUI)
+Vue.use(ElementUI, { locale: language === 'en' ? enLocale : zhLocale })
 
 Vue.config.productionTip = false;
 Vue.prototype.$store = store;
@@ -39,5 +47,6 @@ router.beforeEach((to, from, next) => {
 new Vue({
   router,
   store,
+  i18n,
   render: (h) => h(App),
 }).$mount("#app");

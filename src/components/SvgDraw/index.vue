@@ -36,7 +36,7 @@
                 stroke="green" />
         </svg>
         <div class="btns">
-            <el-button @click="clear" type="danger">清除</el-button>
+            <el-button @click="clear" type="danger">{{$t('btn-clear')}}</el-button>
             <el-button @click="printAll">打印当前图形信息</el-button>
         </div>
     </div>
@@ -52,7 +52,7 @@ type SvgDrawData = {
 
     editingRect: boolean
     editingPolygon: boolean
-    editingPolygonIndex: -1
+    editingPolygonIndex: number
     editingLine: boolean
     
     rectX: number
@@ -139,8 +139,8 @@ export default defineComponent({
         };
     },
     computed: {
-        editingPolygonPoints() {
-            return  this.editingPolygonIndex > -1 && this.polygons[this.editingPolygonIndex].points;
+        editingPolygonPoints(): {x: number;y: number;}[] {
+            return  this.editingPolygonIndex > -1 ? this.polygons[this.editingPolygonIndex].points : [];
         },
     },
     methods: {
