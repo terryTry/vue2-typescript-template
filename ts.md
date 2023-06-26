@@ -198,7 +198,7 @@ declare module "vue/types/vue" {
 
 ### Props类型声明与推导
 
-```
+```vue
 <template>
   <!-- 启用了类型检查和自动补全 -->
   {{ count.toFixed(2) }}
@@ -229,7 +229,7 @@ export default defineComponent({
 
 ### Data类型声明与推导
 
-```
+```vue
 <script lang="ts">
 import { defineComponent } from 'vue';
 
@@ -312,12 +312,34 @@ export default defineComponent({
 });
 ```
 
+### Computed类型声明与推导
+
+```vue
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+    computed: {
+        // 定义函数返回值类型
+        rectStyle(): CSSProperties {
+            return {
+                left: this.rectX + 'px',
+                top: this.rectY + 'px',
+                width: this.rectWidth + 'px',
+                height: this.rectHeight + 'px',
+            };
+        },
+    },
+});
+</script>
+```
+
 ## 四. 第三方组件的ts支持
 
 例如：vue-draggable-resizable 本身不支持ts，但是我们可以通过声明文件的方式来支持ts
 
 创建一个`vue-draggable-resizable-gorkys.d.ts`文件，内容如下：
-```
+```ts
 declare module 'vue-draggable-resizable-gorkys' {
     import { DefineComponent } from "vue";
 
